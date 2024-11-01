@@ -5,7 +5,7 @@ import { ClientProxy } from '@nestjs/microservices';
 export class AppService {
   constructor(@Inject('EVENT_SERVICE') private readonly client: ClientProxy) {}
 
-  async emitEvent(data: any) {
+  async emitEvent() {
     try {
       this.client.emit('consumer_event', { status: 'consumer - 3' }); // Emit an even
     } catch (error) {

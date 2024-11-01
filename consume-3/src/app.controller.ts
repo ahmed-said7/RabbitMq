@@ -8,7 +8,7 @@ export class AppController {
 
   @Post('emit')
   emitEvent(@Body() data: any) {
-    this.appService.emitEvent(data);
+    this.appService.emitEvent();
     return { data };
   }
   @EventPattern('hello_event')
