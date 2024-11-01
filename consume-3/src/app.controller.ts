@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { EventPattern, Payload } from '@nestjs/microservices';
 
@@ -6,9 +6,10 @@ import { EventPattern, Payload } from '@nestjs/microservices';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('emit')
+  emitEvent(@Body() data: any) {
+    this.appService.emitEvent(data);
+    return { data };
   }
   @EventPattern('hello_event')
   async handleUserEvent(@Payload() data: any) {

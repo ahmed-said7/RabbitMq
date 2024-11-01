@@ -17,4 +17,10 @@ export class AppController {
     // Here you can add your logic to handle the event
     // For example, you can save the data to a database or perform any other required operation
   }
+  @EventPattern('consumer_event')
+  async consumerUserEvent(@Payload() data: any) {
+    console.log('Received event:', data);
+    // Here you can add your logic to handle the event
+    // For example, you can save the data to a database or perform any other required operation
+  }
 }
