@@ -72,6 +72,6 @@ networks:
   backend:
     driver: bridge
 volumes:
-  -mongo-one-vol:
-  -mongo-two-vol:
-  -mongo-three-vol:
+  mongo-one-vol:
+  mongo-two-vol:
+  mongo-three-vol:
