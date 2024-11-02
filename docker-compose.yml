@@ -1,0 +1,77 @@
+services:
+  app-one:
+    build: ./app
+    restart: always
+    hostname: app-one
+    volumes:
+      - ./app/src:/app/src:ro
+    env_file:
+      - ./app/.env
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+  app-two:
+    build: ./consumer
+    restart: always
+    hostname: app-two
+    volumes:
+      - ./consumer/src:/consumer/src:ro
+    ports:
+      - "3001:3001"
+    env_file:
+      - ./consumer/.env
+    networks:
+      - backend
+  app-three:
+    build: ./consume-3
+    restart: always
+    hostname: consumer-3
+    volumes:
+      - ./consume-3/src:/consumer-3/src:ro
+    ports:
+      - "3002:3002"
+    env_file:
+      - ./consume-3/.env
+    networks:
+      - backend
+  mongo-one:
+    image: mongo
+    restart: always
+    hostname: mongo-one
+    volumes:
+      - mongo-one-vol:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME:root
+      - MONGO_INITDB_ROOT_PASSWORD:example
+    networks:
+      - backend
+  mongo-two:
+    image: mongo
+    restart: always
+    hostname: mongo-two
+    volumes:
+      - mongo-two-vol:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME:root
+      - MONGO_INITDB_ROOT_PASSWORD:example
+    networks:
+      - backend
+  mongo-three:
+    image: mongo
+    restart: always
+    hostname: mongo-three
+    volumes:
+      - mongo-three-vol:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME:root
+      - MONGO_INITDB_ROOT_PASSWORD:example
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
+volumes:
+  -mongo-one-vol:
+  -mongo-two-vol:
+  -mongo-three-vol:
