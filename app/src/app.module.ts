@@ -4,11 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { MongooseModule } from '@nestjs/mongoose';
-
 @Module({
-  imports: [
-    MongooseModule.forRoot('mongodb://root:example@mongo-one:27017/app'),
-  ],
+  imports: [MongooseModule.forRoot('mongodb://root:example@mongo-two:27017')],
   controllers: [AppController],
   providers: [
     AppService,

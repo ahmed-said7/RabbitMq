@@ -6,7 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://root:example@mongo-three:27017/app'),
+    MongooseModule.forRoot('mongodb://root:example@mongo-three:27017'),
     ClientsModule.register([
       {
         name: 'EVENT_SERVICE',
